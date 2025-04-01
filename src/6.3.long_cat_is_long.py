@@ -7,6 +7,8 @@ This function processes a string by:
 5. Returning a dictionary of each word and its length.
 """
 import string
+
+
 def long_cat_is_long(text):
     """
         Process the input text to create a dictionary where each word is mapped to its length.
@@ -22,6 +24,7 @@ def long_cat_is_long(text):
     words = text.translate(str.maketrans('', '', string.punctuation)).split()  # Remove punctuation and split
     words = [word for word in words if word.isalpha()]  # Keep only alphabetic words
     return {word: len(word) for word in words}
+
 
 if __name__=="__main__":
     long_cat_is_long("")

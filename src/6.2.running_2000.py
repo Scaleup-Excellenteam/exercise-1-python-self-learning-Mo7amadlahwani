@@ -5,8 +5,8 @@ This module provides a function `running_2000` that measures the time it takes t
 Function:
 - `running_2000(f, *args, **kwargs)`: Measures and returns the execution time of a given function `f` with the provided arguments.
 """
-
 import time
+
 
 def running_2000(f, *args,**kwargs):
     """
@@ -25,7 +25,6 @@ def running_2000(f, *args,**kwargs):
     end_time = time.time()  # Record the end time
     elapsed_time = end_time - start_time  # Calculate elapsed time
     return elapsed_time
-
 
 
 if __name__=="__main__":

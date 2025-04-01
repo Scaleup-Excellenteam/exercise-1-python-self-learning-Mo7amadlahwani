@@ -1,4 +1,3 @@
-
 """
 This function groups items in an iterable based on the result of a function `f`.
 It returns a dictionary where the keys are the results of applying `f` to each item,
@@ -6,7 +5,10 @@ and the values are lists of items that share the same result.
 """
 
 from collections import defaultdict
-"""
+
+
+def group_by(f, iterable):
+    """
     Groups the items in the iterable based on the function `f`.
 
     Parameters:
@@ -17,14 +19,12 @@ from collections import defaultdict
     - dict: A dictionary where the keys are the results of applying `f` to each item,
             and the values are lists of items that share the same key.
     """
-def group_by(f, iterable):
-    result = defaultdict(list) # יצירת מילון שבו הערכים הם רשימות
-    for item in iterable:  # עבור כל איבר ב-iterable
-        key = f(item)  # הפעלת הפונקציה על האיבר והוספתו לרשימה במילון
+    result = defaultdict(list)
+    for item in iterable:
+        key = f(item)
         result[key].append(item)
-    return dict(result)  # המרת defaultdict למילון רגיל לפני החזרת התוצאה
+    return dict(result)
 
 
-if __name__=="__main__":
-    group_by(len,["hi"])
-
+if __name__ == "__main__":
+    group_by(len, ["hi"])

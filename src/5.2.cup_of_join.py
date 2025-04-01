@@ -34,9 +34,7 @@ def cup_of_join(*lists,sep=None):
         if sep is not None:
             cup.append(sep)
     return cup
+
+
 if __name__=="__main__":
     cup_of_join()
-
-
-
-

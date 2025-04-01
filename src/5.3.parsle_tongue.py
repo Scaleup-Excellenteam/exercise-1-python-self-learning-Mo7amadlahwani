@@ -11,7 +11,8 @@ def parsle_tongue():
 
        The function works as follows:
        - It reads the file in chunks and decodes each chunk using UTF-8 encoding (ignoring errors).
-       - It extracts sequences of lowercase letters that end with '!', and yields those sequences if they contain at least 5 characters before the '!'.
+       - It extracts sequences of lowercase letters that end with '!', and yields those sequences if they contain
+         at least 5 characters before the '!'.
        - Sequences are reset if an invalid character (non-lowercase or non-ASCII) is found.
 
        Yields:
@@ -19,29 +20,23 @@ def parsle_tongue():
 
        Exceptions:
        - FileNotFoundError: If the specified file does not exist, a message will be printed.
-
-       Example:
-       >>> for sequence in parsle_tongue():
-       >>>     print(sequence)
-       """
-
+    """
     file_path = "./logo.jpg"
     chunk_size = 500
     try:
         with open(file_path, "rb") as file:
             new_str = ""
             while chunk := file.read(chunk_size):
-                decoded_chunk = chunk.decode("utf-8", errors="ignore")  # Use UTF-8
+                decoded_chunk = chunk.decode("utf-8", errors="ignore")
                 for char in decoded_chunk:
                     if char.islower():
                         new_str += char
                     elif char == '!':
                         if len(new_str) >= 5:
                             yield new_str
-                        new_str = ""  # Reset string after "!"
+                        new_str = ""
                     else:
-                        new_str = ""  # Reset if an invalid character is found
-
+                        new_str = ""
     except FileNotFoundError:
         print("File not found")
 

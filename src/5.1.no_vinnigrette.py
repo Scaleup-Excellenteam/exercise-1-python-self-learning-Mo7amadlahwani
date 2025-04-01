@@ -6,7 +6,7 @@ import datetime
 import random
 
 
-def no_vinnigrete(date_entry1,date_entry2):
+def no_vinnigrete(date_entry1, date_entry2):
     """
        Selects a random date between two given dates and checks if it falls on a Monday.
        If the randomly chosen date is not a Monday, it prints: "Ain't gettin' no vinaigrette today :(".
@@ -30,11 +30,11 @@ def no_vinnigrete(date_entry1,date_entry2):
         else:
             random_date = random.randint(epoch_time1, epoch_time2)
         final_date = datetime.datetime.fromtimestamp(random_date).date()
-        if not final_date.weekday() == 0:
+        if final_date.weekday() != 0:
             print("Ain't gettin' no vinaigrette today :(")
-    except:
+    except ValueError:
         print("invalid date!!")
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     no_vinnigrete("2023-07-10", "2023-07-10")

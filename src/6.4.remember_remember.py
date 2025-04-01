@@ -3,28 +3,24 @@ This function decodes a message hidden in an image.
 It looks for specific pixels (in this case, white pixels [255, 255, 255]) in the image,
 and the row index where these pixels are found corresponds to a character in the decoded message.
 """
-import cv2
 
-def remember_remember(img):
+def remember_remember(img_path):
     """
-        Decodes a hidden message in an image by checking the rows where the pixels are [255, 255, 255].
+    Decodes a hidden message in an image by checking columns for the first white pixel
+    and using the row index of that white pixel as an ASCII character code.
+    """
+    from PIL import Image
+    image = Image.open(img_path).convert('RGB')
+    width, height = image.size
+    pixels = image.load()
+    message = []
+    for x in range(width):
+        for y in range(height):
+            if pixels[x, y] == (1, 1, 1):
+                message.append(chr(y))
+                break  # Only first white pixel per column
+    return ''.join(message)
 
-        Parameters:
-        - img (str): The path to the image file containing the hidden message.
 
-        Returns:
-        - str: The decoded message as a string.
-        """
-    image = cv2.imread(img)
-    height, width,_= image.shape
-    message=[]
-    for col in range (width):
-        for row in range (height):
-            if all(image[row,col,]==[1,1,1]):
-                message.append(row)
-                break
-    decoded_message="".join([chr(pixel) for pixel in message])
-    return decoded_message
-
-if __name__ == '__main__':
+if __name__=="__main__":
     remember_remember("./code")

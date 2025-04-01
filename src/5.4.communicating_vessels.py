@@ -6,27 +6,21 @@ This module provides two functions for interleaving:
 """
 
 
-
 def generator_interleave(*iterables):
     """
-       Interleave items from multiple iterables using a generator.
+    Interleave items from multiple iterables using a generator.
 
-       This function takes multiple iterables as input and yields one item at a time from each iterable in round-robin fashion.
-       The function continues until all iterables are exhausted.
+    This function takes multiple iterables as input and yields one item at a time from each iterable
+    in round-robin fashion. The function continues until all iterables are exhausted.
 
-       Args:
-       - *iterables (iterable): Multiple iterables to be interleaved.
+    Args:
+    - *iterables (iterable): Multiple iterables to be interleaved.
 
-       Yields:
-       - Each item from the iterables, interleaved in the order they are provided.
-
-       Example:
-       >>> list(generator_interleave([1, 2, 3], ['a', 'b', 'c']))
-       [1, 'a', 2, 'b', 3, 'c']
-       """
+    Yields:
+    - Each item from the iterables, interleaved in the order they are provided.
+    """
     for group in zip(*iterables):
-        for item in group:
-            yield item
+        yield from group
 
 
 def interleave(*iterables):
@@ -50,12 +44,11 @@ def interleave(*iterables):
     """
     if not iterables:
         return
+    min_len = min(map(len, iterables), default=0)
     for group in zip(*iterables):
-        for item in group:
-            yield item
-    longest_iterable = max(iterables, key=len, default=[])
-    for item in longest_iterable[len(min(iterables, key=len)):]:
-        yield item
+        yield from group
+    for iterable in iterables:
+        yield from iterable[min_len:]
 
 
 if __name__ == "__main__":
