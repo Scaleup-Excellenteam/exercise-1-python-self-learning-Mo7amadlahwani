@@ -20,10 +20,10 @@ def running_2000(f, *args,**kwargs):
         Returns:
         - float: The time (in seconds) it took to execute the function `f`.
         """
-    start_time = time.time()  # Record the start time
-    f(*args, **kwargs)  # Call the function with its arguments
-    end_time = time.time()  # Record the end time
-    elapsed_time = end_time - start_time  # Calculate elapsed time
+    start_time = time.time()
+    f(*args, **kwargs)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
     return elapsed_time
 
 
