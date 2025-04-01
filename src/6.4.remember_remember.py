@@ -23,4 +23,4 @@ def remember_remember(img_path):
 
 
 if __name__=="__main__":
-    remember_remember("./code")
+    remember_remember("code.png")

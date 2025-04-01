@@ -21,7 +21,7 @@ def parsle_tongue():
        Exceptions:
        - FileNotFoundError: If the specified file does not exist, a message will be printed.
     """
-    file_path = "./logo.jpg"
+    file_path = "logo.jpg"
     chunk_size = 500
     try:
         with open(file_path, "rb") as file:
